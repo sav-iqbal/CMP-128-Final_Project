@@ -1,0 +1,63 @@
+//Savaas Iqbal
+// needs to store degree, a, b, c, d, e
+
+class polynomial {
+  private int degree; // stores degree of polynomial 
+  private int terms; // stores number of integers
+  private String polyRead = "A polynomial is a combination of several terms with varying degrees of the same variable."; // string version of polynomial read out
+  String [] numTermsName = { "monomial", "binomial", "trinomial", "polynomial"};
+  
+  String [] lettersCoeff = { "a", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l"}; // max of 10 terms 
+    
+  String [] degreeName = { "linear", "quadratic", "cubic", "quartic", "quintic", "sextic/hexic", "septic/heptic", "octic", "nonic", "decic"};
+  
+   polynomial(int deg, int numTerms){ //polynomial object
+    degree = deg; //input when creating object
+    terms = numTerms;
+  }
+  
+  public int getDegree() {
+    return degree; 
+  } //reads out degree number 
+
+  public int getTerms(){
+    return terms; //reads out term number
+  }
+//polynomial description
+  public String getDesc(){
+  String polyTermWord = ""; 
+    
+    if (terms > 4) {
+      polyTermWord = numTermsName[3]; //if greater than 3 
+      //terms, it is called a polynomial
+    }
+    else {
+      polyTermWord = numTermsName[terms-1];
+    }
+    String descriptionPolyDeg = "\nThis polynomial is a " +   degreeName[degree-1] + " function because the degree raises the expression to the power of " + degree + "\n";  //reads out 
+   //polynomial degree and name corresponding in array
+
+    String descriptionPolyTerm = "This polynomial is a " + polyTermWord + " because there are " + terms + " terms \n"; 
+    
+    String finDesc = polyRead + descriptionPolyDeg + descriptionPolyTerm; //cocatenates to make large description string
+    return finDesc; //returns final description of polynomial
+  }
+  
+  public String getParentFunction() { //creates parent function
+    String parentFuncString = ""; //empty string
+    int degreeDecr = degree; 
+    for (int i = 0; i < degree+1; i++){ //for loop which adds as many terms as degree +1
+      parentFuncString = parentFuncString + lettersCoeff[i] + "x^" + degreeDecr; //builds the parent function
+      if (degreeDecr != 0) {
+        parentFuncString = parentFuncString + " + "; //cocatenates terms until the last term
+      }
+      else { //when degreeDecr = 0, it is the last term, this is when = y is added to compete the string
+        parentFuncString = parentFuncString + " = y"; 
+      }
+      degreeDecr--; //is the power of each term 
+    }
+    return parentFuncString; 
+  }
+
+  
+}

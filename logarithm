@@ -1,0 +1,41 @@
+//Savaas Iqbal
+
+class logarithm {
+  private int base; // stores base of logarithm 
+  private String logRead = "A logarithm is a quantity representing the power to which a fixed number (the base) must be raised to produce a given number. Functions are notated with “log(x)” which has a base of 10 and “ln(x)” which has a base of “e”\n"; // string version of logarithm read out
+      
+  
+   logarithm(int baseEntered){ //polynomial object
+    base = baseEntered; //input when creating object
+  }
+
+  public int getBase() {
+    return base; 
+  } //reads out base number 
+
+ 
+
+//polynomial description
+ public String getDesc(){
+   String logDesc = " "; 
+   if (base == 2) {
+     logDesc = logRead + "A logarithm with base-2 is called a binary logarithm."; //shows special name of logs w/ base 2
+   }
+   else if ( base == 10){
+     logDesc = logRead + "A logarithm with base-10 is called the common logarithm. When there is no base written next to a logarithm, it is base 10."; //adds add'l info
+   }
+   else {
+     logDesc = logRead + "A logarithm with base-" + base + " is called logarithm to base " + base; //generic for other logarithm base
+   }
+  return logDesc; //returns full statement
+  }
+  
+public String getParentFunction() { //creates parent function
+    String parentFuncString = ""; //empty string
+    System.out.println("[] represents a subscript for the base of the logarithm"); 
+    parentFuncString = "log[" + base + "](x)";  
+    return parentFuncString; 
+  }
+
+  
+} //end of logarithm class

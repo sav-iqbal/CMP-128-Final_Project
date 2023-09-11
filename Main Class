@@ -1,0 +1,166 @@
+//function calculator 
+import java.util.*;
+
+class Main {
+
+public static void main(String[] args) {
+  
+    Scanner keyboard = new Scanner(System.in);
+    char userCommand = 'z';
+    boolean runProgFullCalc = true; // pretty self explanatory, used in a while loop and can be changed if the user wants to execute the program
+    
+  
+    System.out.println("***Start");
+  do{
+      printCalculatorCmd(); //prints long statement 
+  //Asks user for input of which subsection of the program they want to do
+    
+    userCommand = inputCmds(keyboard.next()); //converts entered string into char to use in if/else statements below
+  
+    //determines which method to execute
+    
+    if (userCommand == 'F') //Savaas Iqbal //Function Description subprogram
+    {
+      System.out.println("Enter which function type you would like to learn more about: Polynomial (P) or Logarithmic (L) ");
+      
+      char userCommand2 = inputCmds(keyboard.next()); //convert to test and see which one the user asks for
+      
+      if (userCommand2 == 'P') { //polynomial description
+        
+        System.out.println("Enter the degree of the polynomial");
+        int polyDeg = keyboard.nextInt(); 
+       
+        if (polyDeg > 10){ //checks to make sure value isn't too large
+          System.out.println("Sorry. That is too large of a degree. Please enter a polynomial with a degree value less than 11.");
+            polyDeg = keyboard.nextInt();
+        }
+        else if (polyDeg < 1) { //checks to make sure value isn't too small
+          System.out.println("Please enter a polynomial with a degree greater than 0.");
+          polyDeg = keyboard.nextInt();
+        }
+        System.out.println("Enter the number of terms");
+        int polyTerms = keyboard.nextInt();  
+
+        polynomial poly = new polynomial(polyDeg, polyTerms);  
+      //creates new polynomial object w/ user entered degree & terms 
+        System.out.println(poly.getDesc()); 
+      
+      }
+      else if (userCommand2 == 'L') { //log base description
+        System.out.println("Enter the base of your logarithm.");
+        int logBase = keyboard.nextInt();
+      
+        if (logBase <= 0) { //checks to make sure entered base is valid 
+          System.out.println("Please enter a logarithm with a base greater than, and not equal to 0.");
+          logBase = keyboard.nextInt(); //if invalid, prompts user to enter a valid response
+        }
+        logarithm log = new logarithm(logBase); //new logarithm object
+        System.out.println(log.getDesc()); 
+      }
+      
+    }
+      //Savaas Iqbal
+    else if (userCommand == 'Z') //Savaas Iqbal //parent function generatior
+    { // parent function
+      System.out.println("Enter which function type you would like to generate a parent function for: Polynomial (P) or Logarithmic (L)");
+      char userCommand3 = inputCmds(keyboard.next()); 
+      if (userCommand3 == 'P') { //polynomial parent function
+        System.out.println("Enter the degree of the polynomial");         
+         int polyDeg = keyboard.nextInt(); 
+        polynomial poly = new polynomial (polyDeg, polyDeg+1); 
+        //creates polynomial object with poly degree + terms 
+        System.out.println("The parent function is:  \n" + poly.getParentFunction() + "\nWhen the degree is " + polyDeg); 
+      }
+      else if (userCommand3 == 'L') { //logarithm parent function generator 
+        System.out.println("Enter the base of the logarithm.");
+        int logBase = keyboard.nextInt();
+        logarithm log = new logarithm(logBase); 
+        System.out.println(log.getParentFunction());
+      }
+     
+      
+      
+    }
+    
+    else if (userCommand == 'C') //start of calculator
+    { //Ed -- created this code 
+      //Savaas Iqbal --> debugged / fixed all syntax
+
+      String tempChoice;
+      char choice; 
+      float num1, num2, answer;
+      float base, logNum, logAnswer;
+
+      // ask users to enter an operator
+      System.out.println("Choose an operator: +, -, *, or /");
+  
+      tempChoice = keyboard.next().toUpperCase();
+      choice = tempChoice.charAt(0);
+
+      // ask users to enter numbers
+      if (choice == '+' || choice == '-' || choice == '*' || choice == '/')
+      {
+        System.out.println("Enter first number");
+        num1 = keyboard.nextFloat();
+
+        System.out.println("Enter second number");
+        num2 = keyboard.nextFloat();
+
+        basicMath ed = new basicMath();
+
+        System.out.println("The answer is: "+ ed.basicMath(choice,num1,num2));
+      }
+      /*else if (choice == 'L')
+      {
+        System.out.println("Specify your log base as a whole number please.");
+        base = keyboard.nextFloat();
+
+        System.out.println("Specify what you are finding the log of as a whole number please.");
+        logNum = keyboard.nextFloat();
+
+        basicMath ed = new logarithmSolve();
+
+        logAnswer = ed.logarithmSolve(base, logNum);
+        
+      }*/
+    } //end of calculator
+    else if (userCommand == 'X') //exit program
+    {
+      runProgFullCalc = false; 
+    }
+    else //invalid input
+    {  
+      System.out.println("Please enter a valid input."); 
+      //restart loop here 
+    }
+    
+  }while (runProgFullCalc == true);
+  
+  if (runProgFullCalc == false) { System.out.println("You have exited the program. \n\n***End"); } //exit statement to tell user
+}
+
+  
+  //method prints out statement asking user what they would like to do 
+  //Savaas Iqbal
+  public static void printCalculatorCmd(){
+    
+    System.out.println("\nWhat would you like to do? Description about functions (F), find parent function (Z), or basic calculations (C), ?\n\nWould you like to exit (X)");
+  } //prints out huge statement
+  
+  //Savaas Iqbal
+  // method to input user commands, returns character
+  public static char inputCmds(String enterInfo){
+    String userCommandStr = enterInfo.toUpperCase(); 
+    char userCommand_ = userCommandStr.charAt(0);
+    return userCommand_; //turns entered string into char
+  }
+
+} 
+ 
+
+
+
+
+  
+
+

@@ -1,0 +1,47 @@
+//Edward Irwin
+//this literally just does basic math, can return a number that would continue to be used in other sections if applicable
+import java.util.*;
+import java.lang.Math;
+class basicMath{
+
+  public float basicMath(char op, float num1, float num2)
+    {
+    float answer = 0; 
+    float number1 = num1; 
+    float number2 = num2; 
+      
+    switch (op)
+      {
+        case '+':
+          answer = number1+number2;
+          break;
+
+        case '-':
+          answer = number1-number2;
+          break;
+
+        case '*':
+          answer = number1*number2;
+          break;
+
+        case '/':
+          answer = number1/number2;
+          break;
+      }
+    return answer;
+    }
+  
+
+
+  public double logarithmSolve(float base, float logNum)
+  {//lol i use the math class to do the change of base formula, ez money
+    float base1 = base;
+    float logNum1 = logNum;
+
+    double logAnswer = (Math.log(base1))/(Math.log(logNum1));
+
+    return logAnswer;
+  }
+}
+
+//help for this was provided from https://www.programiz.com/java-programming/examples/calculator-switch-case for basic outline
